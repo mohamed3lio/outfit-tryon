@@ -4021,7 +4021,7 @@ function worldPos(o){ const v = new THREE.Vector3(); o.getWorldPosition(v); retu
 
 const loader = new THREE.GLTFLoader();
 const AVATAR_SOURCES = [
-  '1-avatar_v9.glb',
+  '1-avatar_v10.glb',
   'https://cdn.jsdelivr.net/gh/readyplayerme/animation-library@master/masculine/glb/Masculine_TPose.glb',
   'https://raw.githubusercontent.com/readyplayerme/animation-library/master/masculine/glb/Masculine_TPose.glb'
 ];
@@ -4287,7 +4287,7 @@ function foreSleeve(side, t0, t1, hex, rough){
   const B = side>0 ? MEAS.wrist.L : MEAS.wrist.R;
   const r = MEAS.foreR + .008;
   const segLen = A.distanceTo(B)*(t1-t0);
-  const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r-.012, segLen, 22), clothMat(hex, rough));
+  const m = new THREE.Mesh(new THREE.CylinderGeometry(r+.02, r-.012, segLen, 22), clothMat(hex, rough));
   m.rotation.z = side>0 ? Math.PI/2 : -Math.PI/2;
   const dir = B.clone().sub(A);
   const c = A.clone().add(dir.multiplyScalar((t0+t1)/2));
@@ -4366,7 +4366,7 @@ function mkTop(o){
     if(o.sleeves==='long'){
       [1,-1].forEach(function(s){
         parts.push(P(s>0?'uaL':'uaR', armSleeve(s, MEAS.armR+o.sleeveR+.022, null, -.28, 1.12, o.hex, o.rough)));
-        parts.push(P(s>0?'elL':'elR', foreSleeve(s, -.22, .95, o.hex, o.rough)));
+        parts.push(P(s>0?'elL':'elR', foreSleeve(s, -.38, .95, o.hex, o.rough)));
         if(o.cuff){
           const A = s>0?MEAS.elbow.L:MEAS.elbow.R, B = s>0?MEAS.wrist.L:MEAS.wrist.R;
           const c = A.clone().lerp(B,.88);
